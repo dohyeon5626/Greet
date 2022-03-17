@@ -1,0 +1,16 @@
+name: purge image
+
+on:
+  schedule:
+    - cron: "0,20,40 * * * *"
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: syossan27/purge-github-readme-image@v1.0.0
+        with:
+          repository: ${github.repository}
+          token: ${{ secrets.GITHUB_TOKEN }}
