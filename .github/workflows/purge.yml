@@ -13,5 +13,5 @@ jobs:
     steps:
       - uses: syossan27/purge-github-readme-image@v1.0.0
         with:
-          repository: ${github.repository}
+          repository: dohyeon5626/Greet
           token: ${{ secrets.GITHUB_TOKEN }}
