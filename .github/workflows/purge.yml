@@ -1,4 +1,4 @@
-name: purge image
+name: Purge Image
 
 on:
   schedule:
