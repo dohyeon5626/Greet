@@ -3,6 +3,7 @@ package com.dohyeon5626.greet.controller;
 import com.dohyeon5626.greet.service.SvgService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +22,11 @@ public class SvgController {
     @GetMapping("/svg")
     public byte[] getSvg() {
         return service.getSvg(LocalDate.now().format(formatter));
+    }
+
+    @PostMapping("/svg")
+    public void setSvg() {
+        service.update();
     }
 
 }
