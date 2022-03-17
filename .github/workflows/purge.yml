@@ -3,6 +3,7 @@ name: Purge Image
 on:
   schedule:
     - cron: "0,20,40 * * * *"
+  workflow_dispatch:
 
 jobs:
   build:
