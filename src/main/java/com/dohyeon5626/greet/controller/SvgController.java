@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 @RequestMapping(produces = "image/svg+xml")
 public class SvgController {
 
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd");
 
     private final SvgService service;
 
