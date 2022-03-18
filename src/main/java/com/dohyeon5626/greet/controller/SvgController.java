@@ -25,7 +25,7 @@ public class SvgController {
     @GetMapping("/svg")
     public ResponseEntity<byte[]> getSvg() {
         return ResponseEntity.ok()
-                        .cacheControl(CacheControl.maxAge(5, TimeUnit.SECONDS))
+                        .cacheControl(CacheControl.maxAge(1, TimeUnit.SECONDS))
                                 .body(service.getSvg(LocalDate.now().format(formatter)));
     }
 
