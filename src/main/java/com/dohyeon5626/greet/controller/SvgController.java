@@ -18,7 +18,8 @@ import java.util.concurrent.TimeUnit;
 @RequestMapping(produces = "image/svg+xml")
 public class SvgController {
 
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd");
+    private final DateTimeFormatter MonthDay = DateTimeFormatter.ofPattern("MM-dd");
+    private final DateTimeFormatter YearMonthDay = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     private final SvgService service;
 
@@ -26,14 +27,14 @@ public class SvgController {
     public ResponseEntity<byte[]> getDate() {
         return ResponseEntity.ok()
                 .cacheControl(CacheControl.maxAge(10, TimeUnit.SECONDS))
-                .body(service.getDate(LocalDate.now().format(formatter)));
+                .body(service.getDate(LocalDate.now().format(YearMonthDay)));
     }
 
     @GetMapping("/sentence")
     public ResponseEntity<byte[]> getSentence() {
         return ResponseEntity.ok()
                         .cacheControl(CacheControl.maxAge(1, TimeUnit.SECONDS))
-                                .body(service.getSentence(LocalDate.now().format(formatter)));
+                                .body(service.getSentence(LocalDate.now().format(MonthDay)));
     }
 
     @PostMapping("/svg")
