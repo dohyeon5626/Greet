@@ -22,11 +22,18 @@ public class SvgController {
 
     private final SvgService service;
 
-    @GetMapping("/svg")
-    public ResponseEntity<byte[]> getSvg() {
+    @GetMapping("/date")
+    public ResponseEntity<byte[]> getDate() {
+        return ResponseEntity.ok()
+                .cacheControl(CacheControl.maxAge(10, TimeUnit.SECONDS))
+                .body(service.getDate(LocalDate.now().format(formatter)));
+    }
+
+    @GetMapping("/sentence")
+    public ResponseEntity<byte[]> getSentence() {
         return ResponseEntity.ok()
                         .cacheControl(CacheControl.maxAge(1, TimeUnit.SECONDS))
-                                .body(service.getSvg(LocalDate.now().format(formatter)));
+                                .body(service.getSentence(LocalDate.now().format(formatter)));
     }
 
     @PostMapping("/svg")

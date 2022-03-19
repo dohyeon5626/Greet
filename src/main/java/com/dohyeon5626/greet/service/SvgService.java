@@ -27,7 +27,17 @@ public class SvgService {
         update();
     }
 
-    public byte[] getSvg(String date) {
+    public byte[] getDate(String date) {
+        return ("<svg width=\"620\" height=\"140\" viewBox=\"0 0 620 140\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n" +
+                "<text \n" +
+                "x=\"30\" y=\"90\" \n" +
+                "fill=\"black\" font-size=\"10\" font-family=\"'Roboto'\" font-weight=\"bold\">\n" +
+                date + "\n" +
+                "</text>\n" +
+                "</svg>").getBytes();
+    }
+
+    public byte[] getSentence(String date) {
         if (svgList.containsKey(date)) {
             List<byte[]> svgs = svgList.get(date);
             return svgs.get(random.nextInt(svgs.size()));
