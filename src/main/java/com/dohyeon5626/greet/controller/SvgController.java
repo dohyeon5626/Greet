@@ -26,7 +26,7 @@ public class SvgController {
     @GetMapping("/date")
     public ResponseEntity<byte[]> getDate() {
         return ResponseEntity.ok()
-                .cacheControl(CacheControl.maxAge(10, TimeUnit.SECONDS))
+                .cacheControl(CacheControl.maxAge(10, TimeUnit.MINUTES))
                 .body(service.getDate(LocalDate.now().format(YearMonthDay)));
     }
 

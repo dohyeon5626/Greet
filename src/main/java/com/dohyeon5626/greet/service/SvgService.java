@@ -29,6 +29,7 @@ public class SvgService {
 
     public byte[] getDate(String date) {
         return ("<svg width=\"846\" height=\"30\" viewBox=\"0 0 846 30\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\">\n" +
+                "<rect width=\"846\" height=\"30\" fill=\"white\"/>" +
                 "<text \n" +
                 "x=\"20\" y=\"15\" \n" +
                 "fill=\"black\" font-size=\"10\" font-family=\"'Roboto'\" font-weight=\"bold\">\n" +
