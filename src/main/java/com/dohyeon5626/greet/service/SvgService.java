@@ -6,6 +6,7 @@ import com.dohyeon5626.greet.client.SvgContentClient;
 import com.dohyeon5626.greet.dto.FolderInfoDto;
 import com.dohyeon5626.greet.dto.TreeInfoDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -21,6 +22,9 @@ public class SvgService {
     private final SvgBranchInfoClient svgBranchInfoClient;
     private final FolderInfoClient folderInfoClient;
     private final SvgContentClient svgContentClient;
+
+    @Value("${github.token}")
+    private String token;
 
     @PostConstruct
     public void setSvg() {
@@ -50,12 +54,12 @@ public class SvgService {
 
     public void update() {
         svgList.clear();
-        for (TreeInfoDto treeInfoDto : svgBranchInfoClient.getBranchInfo().getTree()) {
-            List<FolderInfoDto> folderInfoDtos = folderInfoClient.getFileName(treeInfoDto.getSha()).getTree();
+        for (TreeInfoDto treeInfoDto : svgBranchInfoClient.getBranchInfo(token).getTree()) {
+            List<FolderInfoDto> folderInfoDtos = folderInfoClient.getFileName(token, treeInfoDto.getSha()).getTree();
             List<byte[]> svgContents = new ArrayList<>(folderInfoDtos.size());
 
             for (FolderInfoDto folderInfoDto : folderInfoDtos) {
-                svgContents.add(svgContentClient.getSvg(treeInfoDto.getPath() + "/" + folderInfoDto.getPath()));
+                svgContents.add(svgContentClient.getSvg(token, treeInfoDto.getPath() + "/" + folderInfoDto.getPath()));
             }
             svgList.put(treeInfoDto.getPath(), svgContents);
         }
